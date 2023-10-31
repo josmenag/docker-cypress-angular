@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "cypress": "^13.3.3",
+    "wait-on": "^7.0.1"
+  },
+  "scripts": {
+    "cypress:run": "sleep 25 && cypress run"
+  }
+}

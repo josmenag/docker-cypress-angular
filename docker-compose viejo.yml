@@ -1,0 +1,33 @@
+version: "3"
+services:
+  my-app:
+    build:
+      context: ./my-app
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    command: npm start
+    volumes:
+      - ./my-app:/app
+    networks:
+      - my-network
+
+  cypress:
+    image: cypress/included:latest
+    depends_on:
+      - my-app
+    volumes:
+      - ./cypress:/e2e
+    environment:
+      WAIT_HOSTS: my-app:4200
+      # CYPRESS_baseUrl=http://my-app:4200
+
+    working_dir: /e2e
+    command: ["wait-on", "http://my-app:4200", "&&", "cypress", "run"]
+
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
