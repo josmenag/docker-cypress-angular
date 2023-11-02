@@ -4,6 +4,6 @@
     "wait-on": "^7.0.1"
   },
   "scripts": {
-    "cypress:run": "sleep 25 && cypress run"
+    "cypress:run": "sleep 35 && cypress run"
   }
 }

@@ -1,9 +1,7 @@
 version: "3"
 services:
   my-app:
-    build:
-      context: ./my-app
-      dockerfile: Dockerfile
+    image: angular-local
     ports:
       - "4200:4200"
     command: npm start
@@ -11,7 +9,7 @@ services:
       - ./my-app:/app
 
   cypress:
-    image: cypress-image-jose3
+    image: cypress-local
     depends_on:
       - my-app
     volumes:
